@@ -4,7 +4,7 @@ export const site = {
 	location: 'Lima, Perú',
 	email: 'gianmarco.chistama@gmail.com',
 	github: 'https://github.com/mavadev',
-	cvUrl: '',
+	cvUrl: '/cv.pdf',
 	status: 'Disponible para nuevas oportunidades',
 	title: 'Portafolio en construcción',
 	description:
