@@ -1,0 +1,33 @@
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute inset-0 bg-[#05040b]"></div>
+
+  <div
+    class="absolute -left-36 bottom-[-12rem] h-[34rem] w-[34rem] rounded-full bg-fuchsia-700/[0.15] blur-[110px] motion-safe:animate-pulse-soft"
+  ></div>
+  <div
+    class="absolute -right-40 top-[-13rem] h-[32rem] w-[32rem] rounded-full bg-purple-700/[0.15] blur-[105px] motion-safe:animate-pulse-soft [animation-delay:1.4s]"
+  ></div>
+  <div
+    class="absolute left-[45%] top-[52%] h-72 w-72 rounded-full bg-violet-600/[0.06] blur-[100px]"
+  ></div>
+
+  <div
+    class="pointer-aura absolute h-72 w-72 rounded-full bg-violet-500/[0.08] blur-[90px]"
+  ></div>
+
+  <div class="noise absolute inset-0 opacity-[0.018] mix-blend-soft-light"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]"></div>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const updatePointer = (event: PointerEvent) => {
+    if (reducedMotion.matches) return;
+    root.style.setProperty("--pointer-x", `${event.clientX}px`);
+    root.style.setProperty("--pointer-y", `${event.clientY}px`);
+  };
+
+  window.addEventListener("pointermove", updatePointer, { passive: true });
+</script>

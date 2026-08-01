@@ -1,0 +1,65 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  email: string;
+}
+
+const { email } = Astro.props;
+---
+
+<button
+  type="button"
+  data-copy-email
+  data-email={email}
+  class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.045] px-5 py-3 text-sm font-medium text-zinc-200 backdrop-blur-sm transition duration-300 hover:border-violet-300/[0.30] hover:bg-white/[0.08] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-400"
+>
+  <span data-copy-icon class="transition-transform duration-300 group-hover:-translate-y-0.5">
+    <Icon name="copy" class="h-[18px] w-[18px]" />
+  </span>
+  <span data-copy-label>Copiar correo</span>
+</button>
+
+<p data-copy-status class="sr-only" aria-live="polite"></p>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-copy-email]");
+
+  async function copyText(text: string) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const email = button.dataset.email;
+      const label = button.querySelector<HTMLElement>("[data-copy-label]");
+      const status = button.nextElementSibling as HTMLElement | null;
+
+      if (!email || !label) return;
+
+      try {
+        await copyText(email);
+        label.textContent = "Correo copiado";
+        if (status) status.textContent = `Correo ${email} copiado al portapapeles.`;
+
+        window.setTimeout(() => {
+          label.textContent = "Copiar correo";
+        }, 2200);
+      } catch {
+        window.location.href = `mailto:${email}`;
+      }
+    });
+  });
+</script>

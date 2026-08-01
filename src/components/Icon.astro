@@ -1,0 +1,46 @@
+---
+interface Props {
+  name: "github" | "mail" | "download" | "copy" | "check";
+  class?: string;
+}
+
+const { name, class: className = "h-5 w-5" } = Astro.props;
+---
+
+{
+  name === "github" && (
+    <svg class={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 .7a11.3 11.3 0 0 0-3.57 22.02c.57.1.78-.25.78-.55v-2.18c-3.18.7-3.85-1.35-3.85-1.35-.52-1.33-1.27-1.68-1.27-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.68 1.25 3.33.95.1-.74.4-1.25.73-1.54-2.54-.29-5.21-1.27-5.21-5.65 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.03 0 0 .96-.31 3.12 1.17A10.84 10.84 0 0 1 12 5.89c.97 0 1.93.13 2.84.38 2.16-1.48 3.12-1.17 3.12-1.17.62 1.57.23 2.74.11 3.03.73.8 1.18 1.82 1.18 3.07 0 4.39-2.68 5.35-5.23 5.64.41.36.78 1.06.78 2.14v3.19c0 .3.2.66.79.55A11.3 11.3 0 0 0 12 .7Z" />
+    </svg>
+  )
+}
+{
+  name === "mail" && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5v10.5H3.75V6.75Z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 7.5 7.5 5.25 7.5-5.25" />
+    </svg>
+  )
+}
+{
+  name === "download" && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75v10.5m0 0 4-4m-4 4-4-4M4.5 18.75h15" />
+    </svg>
+  )
+}
+{
+  name === "copy" && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <rect x="8" y="8" width="11" height="11" rx="2" />
+      <path stroke-linecap="round" d="M16 8V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h1" />
+    </svg>
+  )
+}
+{
+  name === "check" && (
+    <svg class={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4 4 10-10" />
+    </svg>
+  )
+}

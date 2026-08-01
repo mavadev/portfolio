@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 4s ease-in-out infinite;
+  --animate-enter: enter 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(4deg);
+    }
+  }
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 0.42;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.68;
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+:root {
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --pointer-x: 50vw;
+  --pointer-y: 50vh;
+}
+
+html {
+  min-width: 320px;
+  background: #05040b;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 18% 90%, rgba(108, 38, 160, 0.12), transparent 26rem),
+    radial-gradient(circle at 88% 8%, rgba(151, 37, 121, 0.12), transparent 24rem),
+    #05040b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  color: #fff;
+  background: rgba(168, 85, 247, 0.45);
+}
+
+.pointer-aura {
+  left: var(--pointer-x);
+  top: var(--pointer-y);
+  transform: translate(-50%, -50%);
+  transition: left 180ms ease-out, top 180ms ease-out;
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .pointer-aura {
+    display: none;
+  }
+}
